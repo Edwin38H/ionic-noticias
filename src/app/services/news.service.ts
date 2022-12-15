@@ -21,4 +21,12 @@ export class NewsService {
       
     );
   }
+  getTopHeadlinesByCategory(category:string):Observable<Article[]>{
+    return this.http.get<NewsResponse>(
+      'https://newsapi.org/v2/everything?q='+category+'&from='+ date.getFullYear()+'-'+date.getMonth()+'-'+date.getDay()+'s&sortBy=publishedAt',{
+    params:{apiKey}
+    }).pipe(
+    map(({articles})=>articles)
+    );
+    }
 }
